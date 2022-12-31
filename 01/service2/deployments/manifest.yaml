@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: service2
+  labels:
+    app: service2
+spec:
+  containers:
+    - name: service2
+      image: registry.gitlab.com/keisuke.sakasai/otel-sample-app-zenn:service2
+      ports:
+        - containerPort: 8080
+      imagePullPolicy: Always
+---    
+apiVersion: v1
+kind: Service
+metadata:
+  name: service2
+spec:
+  selector:
+    app: service2
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080

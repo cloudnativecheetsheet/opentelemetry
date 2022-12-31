@@ -77,31 +77,30 @@ func main() {
 
 	r := gin.New()
 	r.Use(otelgin.Middleware("service1"))
-	r.GET("/service", sample1)
+	r.GET("/service", service1_sample1)
 
 	r.Run(":8080")
 }
 
-func sample1(c *gin.Context) {
-	_, span := tracer.Start(c.Request.Context(), "sample1 を実行")
+func service1_sample1(c *gin.Context) {
+	_, span := tracer.Start(c.Request.Context(), "service1 の sample1 関数を実行")
 	defer span.End()
-	time.Sleep(time.Second * 1)
-	sample2(c)
 
-	_, span = tracer.Start(c.Request.Context(), "service2 を実行")
-	defer span.End()
 	rsp, err := otelhttp.Get(
 		c.Request.Context(),
-		"service2.svc.observability.cluster.local:8080/service")
+		"http://service2.observability.svc.cluster.local:8080/service",
+	)
 	if err != nil {
 		log.Println(err)
 		return
 	}
 	defer rsp.Body.Close()
+
+	service1_sample2(c)
 }
 
-func sample2(c *gin.Context) {
-	_, span := tracer.Start(c.Request.Context(), "sample2 を実行")
+func service1_sample2(c *gin.Context) {
+	_, span := tracer.Start(c.Request.Context(), "service1 の sample2 関数を実行")
 	defer span.End()
 	time.Sleep(time.Second * 2)
 }

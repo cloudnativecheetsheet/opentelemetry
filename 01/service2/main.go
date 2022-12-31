@@ -26,7 +26,7 @@ func initProvider() (func(context.Context) error, error) {
 
 	res, err := resource.New(ctx,
 		resource.WithAttributes(
-			semconv.ServiceNameKey.String("sample"),
+			semconv.ServiceNameKey.String("service2"),
 		),
 	)
 	if err != nil {
@@ -58,7 +58,7 @@ func initProvider() (func(context.Context) error, error) {
 	return tracerProvider.Shutdown, nil
 }
 
-var tracer = otel.Tracer("sample")
+var tracer = otel.Tracer("service2")
 
 func main() {
 	ctx, stop := signal.NotifyContext(context.Background(), os.Interrupt)
@@ -75,28 +75,16 @@ func main() {
 	}()
 
 	r := gin.New()
-	r.Use(otelgin.Middleware("sample"))
-	r.GET("/sample", sample1)
+	r.Use(otelgin.Middleware("service2"))
+	r.GET("/service", service2_sample1)
 
 	r.Run(":8080")
 }
 
-func sample1(c *gin.Context) {
-	_, span := tracer.Start(c.Request.Context(), "sample1 を実行")
+func service2_sample1(c *gin.Context) {
+	_, span := tracer.Start(c.Request.Context(), "service2 の sample1 関数を実行")
 	defer span.End()
-	time.Sleep(time.Second * 1)
-	sample2(c)
+	time.Sleep(time.Second * 4)
 }
 
-func sample2(c *gin.Context) {
-	_, span := tracer.Start(c.Request.Context(), "sample2 を実行")
-	defer span.End()
-	time.Sleep(time.Second * 2)
-	sample3(c)
-}
-
-func sample3(c *gin.Context) {
-	_, span := tracer.Start(c.Request.Context(), "sample3 を実行")
-	defer span.End()
-	time.Sleep(time.Second * 3)
-}
+// for ITMedia
