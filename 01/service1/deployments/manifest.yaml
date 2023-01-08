@@ -7,7 +7,7 @@ metadata:
 spec:
   containers:
     - name: service1
-      image: registry.gitlab.com/keisuke.sakasai/otel-sample-app-zenn:service1
+      image: ghcr.io/cloudnativecheetsheet/service1:latest
       ports:
         - containerPort: 8080
       imagePullPolicy: Always
