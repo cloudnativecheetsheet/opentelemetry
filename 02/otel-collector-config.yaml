@@ -1,0 +1,64 @@
+apiVersion: opentelemetry.io/v1alpha1
+kind: OpenTelemetryCollector
+metadata:
+  name: sample
+  namespace: observability
+spec:
+  mode: deployment
+  config: |
+    receivers:
+      otlp:
+        protocols:
+          grpc:
+            endpoint: "0.0.0.0:4317"
+
+      # for spanMetrics ---
+      otlp/spanmetrics:
+        protocols:
+          grpc:
+            endpoint: "localhost:12345"
+      # --- 
+
+    processors:
+      # for spanMetrics ---
+      spanmetrics:
+        metrics_exporter: otlp/spanmetrics
+        latency_histogram_buckets: [100us, 1ms, 2ms, 6ms, 10ms, 100ms, 250ms]
+        dimensions:
+          - name: http.method
+            default: GET
+          - name: http.status_code
+        dimensions_cache_size: 1000
+        aggregation_temporality: "AGGREGATION_TEMPORALITY_CUMULATIVE" 
+      # ---
+
+    exporters:
+      otlp:
+        endpoint: tempo-distributed-distributor.observability.svc.cluster.local:4317
+        tls:
+          insecure: true
+
+      # for spanMetrics ---
+      otlp/spanmetrics:
+        endpoint: "localhost:55677"
+        tls:
+          insecure: true
+
+      prometheus:
+        endpoint: "http://kube-prometheus-stack-prometheus:9090/api/v1/write"
+      #---          
+
+    service:
+      pipelines:
+        traces:
+          receivers: [otlp]
+          processors: [spanmetrics]
+          exporters: [otlp]
+
+        # for spanMetrics ---
+        metrics/spanmetrics:
+          receivers: [otlp/spanmetrics]
+          exporters: [otlp/spanmetrics]
+
+        metrics:
+          exporters: [prometheus]
