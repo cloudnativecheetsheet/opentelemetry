@@ -5,6 +5,7 @@ metadata:
   namespace: observability
 spec:
   mode: deployment
+  imagePullPolicy: Always
   config: |
     receivers:
       otlp:
