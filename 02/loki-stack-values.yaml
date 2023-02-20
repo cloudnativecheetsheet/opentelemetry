@@ -24,7 +24,7 @@ loki:
 promtail:
   enabled: true
   config:
-    lokiAddress: http://observability.loki.svc.cluster.local:3100/loki/api/v1/push
+    lokiAddress: http://loki.observability.svc.cluster.local:3100/loki/api/v1/push
     snippets:
       pipelineStages:
       - docker: {}
