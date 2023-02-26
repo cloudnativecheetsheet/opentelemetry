@@ -28,7 +28,7 @@ spec:
     spec:
       containers:
         - name: todobff
-          image: registry.gitlab.com/keisuke.sakasai/todobff:latest
+          image: ghcr.io/cloudnativecheetsheet/todobff:latest
           ports:
             - containerPort: 8080
           imagePullPolicy: Always
@@ -65,7 +65,7 @@ spec:
     spec:
       containers:
         - name: todoapi
-          image: registry.gitlab.com/keisuke.sakasai/todoapi:latest
+          image: ghcr.io/cloudnativecheetsheet/todoapi:latest
           ports:
             - containerPort: 8080
           imagePullPolicy: Always
@@ -102,7 +102,7 @@ spec:
     spec:
       containers:
         - name: userapi
-          image: registry.gitlab.com/keisuke.sakasai/userapi:latest
+          image: ghcr.io/cloudnativecheetsheet/userapi:latest
           ports:
             - containerPort: 8080
           imagePullPolicy: Always
