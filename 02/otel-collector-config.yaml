@@ -13,7 +13,7 @@ spec:
             endpoint: "0.0.0.0:4317"
 
       # for spanMetrics ---
-      # Dummy receiver that's never used, because a pipeline is required to have one.
+      # スパンメトリクス用パイプライン作成のためのダミーレシーバー
       otlp/spanmetrics:
         protocols:
           grpc:
@@ -43,19 +43,28 @@ spec:
 
       # for spanMetrics ---
       prometheusremotewrite:
-        endpoint: "http://kube-prometheus-stack-prometheus.observability.svc.cluster.local:9090/api/v1/write"
+        endpoint: http://kube-prometheus-stack-prometheus.observability.svc.cluster.local:9090/api/v1/write
         resource_to_telemetry_conversion:
           enabled: true   
-      #---          
+      # ---
+
+      # OpenTelemetry Collectorのデバッグ用
+      # logging:
+        # loglevel: debug
 
     service:
       pipelines:
         traces:
           receivers: [otlp]
-          processors: [spanmetrics]
+          processors: [spanmetrics, batch]
           exporters: [otlp]
 
         # for spanMetrics ---
         metrics/spanmetrics:
           receivers: [otlp/spanmetrics]
           exporters: [prometheusremotewrite]
+        # ---
+
+        logs:
+          receivers: [otlp]
+          exporters: [logging]
