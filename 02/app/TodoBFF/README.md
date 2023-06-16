@@ -41,5 +41,5 @@ Forwarding from [::1]:9090 -> 8080
 右上の ```LOGOUT``` ボタンを押下することで、TOP 画面に戻ります。
 
 ## 補足情報
-- TodoAPI：
-- UserAPI：
+- TodoAPI：https://github.com/cloudnativecheetsheet/opentelemetry/tree/main/02/app/TodoAPI
+- UserAPI：https://github.com/cloudnativecheetsheet/opentelemetry/tree/main/02/app/UserAPI
