@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todoapi
+  labels:
+    app: todoapi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: todoapi
+  template:
+    metadata:
+      labels:
+        app: todoapi
+    spec:
+      containers:
+        - name: todoapi
+          image: ghcr.io/cloudnativecheetsheet/todoapi:latest
+          ports:
+            - containerPort: 8080
+          imagePullPolicy: Always

@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todobff
+  labels:
+    app: todobff
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: todobff
+  template:
+    metadata:
+      labels:
+        app: todobff
+    spec:
+      containers:
+        - name: todobff
+          image: ghcr.io/cloudnativecheetsheet/todobff:latest
+          ports:
+            - containerPort: 8080
+          imagePullPolicy: Always

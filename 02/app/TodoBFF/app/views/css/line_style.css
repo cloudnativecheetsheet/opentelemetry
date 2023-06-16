@@ -1,0 +1,120 @@
+.line_container_create {
+    font-size: 24px;
+}
+
+.line__container {
+    overflow: hidden;
+    font-size: 24px;
+}
+
+
+.line__container .line__title {
+    background: #273246;
+    padding: 30px;
+    text-align: center;
+    font-size: 150%;
+    color: #ffffff;
+}
+
+/* 会話部分 */
+.line__container .line__contents {
+    padding: 24px;
+    overflow: hidden;
+    /*line-height: 150%;*/
+}
+
+.line__container .scroll {
+    height: auto;
+    overflow-y: scroll;
+}
+
+/* 相手の会話 */
+.line__container .line__left {
+    width: 100%;
+    position: relative;
+    display: block;
+    margin-bottom: 0px;
+    max-width: 85%;
+    clear: both;
+    margin: 0% 0%;
+}
+
+/* アイコン画像 */
+.line__container .line__left figure {
+    width: 12px;
+    position: absolute;
+    top: 10px;
+    left: 0;
+    padding: 0;
+    margin: 0;
+
+}
+
+/* 正方形を用意 */
+.line__container .line__left figure img {
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+}
+
+.line__container .line__left .line__left-text {
+    margin-left: 120px;
+}
+
+.line__container .line__left .line__right-text {
+    margin-right: 0px;
+}
+
+.line__container .line__left .line__left-text .name {
+    font-size: 14px;
+    text-align: left;
+    color: #ffffff;
+    padding-bottom: 6px;
+}
+
+.line__container .line__left .line__right-text .edit_delete {
+    padding-top: 6px;
+    text-align: right;
+    color: #ffffff;
+}
+
+/* コメントエリア */
+.line__container .line__left .text {
+    margin: 0;
+    position: relative;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #ffffff;
+    opacity: 0.75;
+    font-size: 18px;
+    text-align: left;
+    padding-left: 10px;
+    
+}
+
+/* 吹き出し */
+.line__container .line__left .text::after {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 0;
+    height: 0;
+    left: -20px;
+    top: 10px;
+    border-right: 20px solid #ffffff;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+}
+
+/* 既読エリア */
+.line__container .line__right .date {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 100px;
+    text-align: right;
+    left: -30px;
+    bottom: 0px;
+    font-size: 80%;
+    color: #ffffff;
+}
