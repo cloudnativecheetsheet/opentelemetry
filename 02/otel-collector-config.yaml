@@ -66,5 +66,3 @@ spec:
         # ---
 
         logs:
-          receivers: [otlp]
-          exporters: []
