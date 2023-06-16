@@ -4,7 +4,6 @@ import (
 	"database/sql"
 	"fmt"
 	"log"
-	"todoapi/config"
 
 	_ "github.com/lib/pq"
 	_ "github.com/mattn/go-sqlite3"
@@ -12,8 +11,6 @@ import (
 
 var Db *sql.DB
 var err error
-var dbName = config.Config.DbName
-var deployEnv = config.Config.Deploy
 
 func init() {
 	Db, err = sql.Open("postgres", "host=postgresql.todo.svc.cluster.local port=5432 user=postgres dbname=postgres password=postgres sslmode=disable")
