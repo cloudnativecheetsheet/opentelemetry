@@ -65,4 +65,6 @@ spec:
           exporters: [prometheusremotewrite]
         # ---
 
-        logs:
+        # logs:
+          # receivers: [otlp]
+          # exporters: [otlp]
