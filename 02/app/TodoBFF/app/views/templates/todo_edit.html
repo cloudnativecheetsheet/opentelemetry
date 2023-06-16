@@ -1,0 +1,13 @@
+{{define "content"}}
+<div class="todo-edit">
+<form role="form" action="/menu/todos/update/{{.ID}}" method="post">
+    <div class="lead"><i class="icon icon-file-text"></i></div>
+    <br/>
+    <div class="form-group">
+      <textarea class="form-control" name="content" id="content" placeholder="Todoを更新" rows="4">{{.Content}}</textarea>
+      <br/>
+      <button class="btn btn-lg btn-primary pull-right" type="submit">更新</button>
+    </div>
+  </form>
+</div>
+{{end}}

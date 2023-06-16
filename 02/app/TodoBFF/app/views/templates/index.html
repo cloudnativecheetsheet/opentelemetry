@@ -1,0 +1,34 @@
+{{ define "content" }}
+<div class="todo">
+    <div class="line_container_create">
+        <p><a href="/menu/todos/new"><i class="icon icon-pencil"></i> {{.Name}} の Todo 作成</a></p>
+    </div>
+    <hr>
+
+    {{ range .Todos }}
+    <div class="line__container">
+        <div class="line__contents scroll">
+            <div class="line__left">
+                <figure>
+                    <img src="/static/image/icon.png" />
+                </figure>
+                <div class="line__left-text">
+                    <div class="name">Todo ID: {{.ID}}　作成日時: {{.CreatedAt }}</div>
+                    <div class="text">
+                        {{ .Content }}
+                    </div>
+                    <div class="line__right-text">
+                        <div class="edit_delete">
+                            <a href="/menu/todos/edit/{{.ID}}"><i class="icon icon-file-text"></i></a>
+                            <a href="/menu/todos/delete/{{.ID}}"><i class="icon icon-bin2"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    {{end}}
+
+</div>
+{{end}}

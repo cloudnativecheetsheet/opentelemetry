@@ -1,0 +1,38 @@
+{{define "layout"}}
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TodoApp</title>
+    <link rel="icon" href="/static/image/favicon.ico">
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/form.css">
+    <link rel="stylesheet" href="/static/css/line_style.css">
+
+    <link rel="stylesheet" href="/static/fonts_temp/icomoon/style.css">
+    <link rel="stylesheet" href="/static/css/css_temp/owl.carousel.min.css">
+    <link rel="stylesheet" href="/static/css/css_temp/style.css">
+    <link href="https://fonts.googleapis.com/earlyaccess/mplus1p.css" rel="stylesheet" />
+</head>
+
+<body>
+    {{template "navbar" }}
+    <div class="container text-center">
+        {{template "content" . }}
+    </div>
+    {{template "footer" }}
+</body>
+
+<script src="/static/js/jquery-3.6.0.min.js"></script>
+<script src="/static/js/bootstrap.bundle.min.js"></script>
+<script src="/static/js/js_temp/jquery-3.3.1.min.js"></script>
+<script src="/static/js/js_temp/popper.min.js"></script>
+<script src="/static/js/js_temp/bootstrap.min.js"></script>
+<script src="/static/js/js_temp/jquery.sticky.js"></script>
+<script src="/static/js/js_temp/main.js"></script>
+
+</html>
+{{end}}
